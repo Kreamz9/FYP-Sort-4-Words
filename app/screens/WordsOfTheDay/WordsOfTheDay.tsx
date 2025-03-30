@@ -8,6 +8,8 @@ const { width } = Dimensions.get('window');
 const scale = width / 320;
 
 import { retrieveWordsOfTheDay, globalWordsOfTheDay, getWordsDefinitions } from '../../firestore/importExportFirestore';
+// Load Temporary Words Of The Day
+import { wordsWord, wordsClass, wordsDefinition, wordsExample, wordsPronounce } from '../../firestore/tempWordOfTheDayLists';
 
 interface RouterProps {
     navigation: NavigationProp<any, any>;
@@ -15,6 +17,10 @@ interface RouterProps {
 
 const WordsOfTheDayScreen = ({ navigation}: RouterProps) => {
     const [wordsList, setWordsList] = useState([]);
+    const [wordsClassList, setWordsClassList] = useState([]);
+    const [wordsDefinitionList, setWordsDefinitionList] = useState([]);
+    const [wordsExampleList, setWordsExampleList] = useState([]);
+    const [wordsPronounceList, setWordsPronounceList] = useState([]);
     const [indexCounter, setIndexCounter] = useState(0);
 
     // Get Words of the Day
@@ -22,7 +28,14 @@ const WordsOfTheDayScreen = ({ navigation}: RouterProps) => {
         const fetchData = async () => {
             try {
                 retrieveWordsOfTheDay();
-                setWordsList(globalWordsOfTheDay);
+                // setWordsList(globalWordsOfTheDay); // Actual Value from Firestore
+                
+                // Temporary Value
+                setWordsList(wordsWord);
+                setWordsClassList(wordsClass);
+                setWordsDefinitionList(wordsDefinition);
+                setWordsExampleList(wordsExample);
+                setWordsPronounceList(wordsPronounce);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -92,16 +105,16 @@ const WordsOfTheDayScreen = ({ navigation}: RouterProps) => {
                 </View>
                 <Text style={styles.word_header}>{wordsList[indexCounter]}</Text>
                 {/* <Text style={styles.word_header}>treacly</Text> */}
-                <Text style={styles.word_pronounce}>[ tree-klee ]</Text>
+                <Text style={styles.word_pronounce}>{wordsPronounceList[indexCounter]}</Text>
             </View>
 
             {/* Word Content */}
             <View style={styles.word_content_area}>
-                <ScrollView>
+                <S  crollView>
                     <View style={styles.definition_set}>
-                    <Text style={styles.word_class}>adjective</Text>
-                    <Text style={styles.word_definition}>Sentimental in a contrived or unrestrained way</Text>
-                    <Text style={styles.word_example}>"Your dad's chocolate pecan pie might be a little too treacly for your taste"</Text>
+                    <Text style={styles.word_class}>{wordsClassList[indexCounter]}</Text>
+                    <Text style={styles.word_definition}>{wordsDefinitionList[indexCounter]}</Text>
+                    <Text style={styles.word_example}>{wordsExampleList[indexCounter]}</Text>
                     </View>
                 </ScrollView>
                 <PrevNextButton />
