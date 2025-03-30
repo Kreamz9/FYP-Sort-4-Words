@@ -41,10 +41,10 @@ function ValidateWord1( props: WordToBeValidated ) {
     if(theWord.length > 1 && theWord.length < 11) {
         const db = useSQLiteContext();
         const wordIsValid = db.getAllSync('SELECT * FROM Words WHERE word = ?', [theWord.toLowerCase()]);
-        console.log(wordIsValid);
 
         if(wordIsValid.length > 0) wordIsVal1 = true;
-        return;
+        else wordIsVal1 = false;
+        return 
     }
 }
 
@@ -53,10 +53,10 @@ function ValidateWord2( props: WordToBeValidated ) {
     if(theWord.length > 1 && theWord.length < 11) {
         const db = useSQLiteContext();
         const wordIsValid = db.getAllSync('SELECT * FROM Words WHERE word = ?', [theWord.toLowerCase()]);
-        console.log(wordIsValid);
 
         if(wordIsValid.length > 0) wordIsVal2 = true;
-        return;
+        else wordIsVal2 = false;
+        return 
     }
 }
 
@@ -65,10 +65,10 @@ function ValidateWord3( props: WordToBeValidated ) {
     if(theWord.length > 1 && theWord.length < 11) {
         const db = useSQLiteContext();
         const wordIsValid = db.getAllSync('SELECT * FROM Words WHERE word = ?', [theWord.toLowerCase()]);
-        console.log(wordIsValid);
 
         if(wordIsValid.length > 0) wordIsVal3 = true;
-        return;
+        else wordIsVal3 = false;
+        return 
     }
 }
 
@@ -77,9 +77,9 @@ function ValidateWord4( props: WordToBeValidated ) {
     if(theWord.length > 1 && theWord.length < 11) {
         const db = useSQLiteContext();
         const wordIsValid = db.getAllSync('SELECT * FROM Words WHERE word = ?', [theWord.toLowerCase()]);
-        console.log(wordIsValid);
 
         if(wordIsValid.length > 0) wordIsVal4 = true;
+        else wordIsVal4 = false;
         return;
     }
 }

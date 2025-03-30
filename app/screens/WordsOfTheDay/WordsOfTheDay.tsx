@@ -110,7 +110,7 @@ const WordsOfTheDayScreen = ({ navigation}: RouterProps) => {
 
             {/* Word Content */}
             <View style={styles.word_content_area}>
-                <S  crollView>
+                <ScrollView>
                     <View style={styles.definition_set}>
                     <Text style={styles.word_class}>{wordsClassList[indexCounter]}</Text>
                     <Text style={styles.word_definition}>{wordsDefinitionList[indexCounter]}</Text>
